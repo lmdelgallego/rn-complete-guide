@@ -16,7 +16,13 @@ export default function App() {
         padding: 40,
       }}
     >
-      <View>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
         <TextInput
           placeholder='Course Goal'
           style={{
@@ -24,7 +30,7 @@ export default function App() {
             borderColor: 'black',
             borderWidth: 1,
             padding: 10,
-            marginBottom: 8,
+            width: '80%',
           }}
         />
         <Button title='ADD' />
