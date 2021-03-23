@@ -6,7 +6,7 @@ import {
   Text,
   TextInput,
   View,
-  SafeAreaView,
+  ScrollView,
 } from 'react-native';
 
 export default function App() {
@@ -33,13 +33,13 @@ export default function App() {
         <Button title='ADD' onPress={addGoalHandler} />
       </View>
 
-      <View>
-        {courseGoals.map((goal) => (
-          <View key={goal} style={styles.listItems}>
+      <ScrollView>
+        {courseGoals.map((goal, index) => (
+          <View key={index} style={styles.listItems}>
             <Text>{goal}</Text>
           </View>
         ))}
-      </View>
+      </ScrollView>
 
       <StatusBar style='auto' />
     </View>
@@ -48,7 +48,8 @@ export default function App() {
 
 const styles = StyleSheet.create({
   screen: {
-    padding: 50,
+    paddingHorizontal: 10,
+    paddingVertical: 50,
   },
   inputContainer: {
     flexDirection: 'row',
