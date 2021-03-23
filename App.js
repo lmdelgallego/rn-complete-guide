@@ -35,7 +35,9 @@ export default function App() {
 
       <View>
         {courseGoals.map((goal) => (
-          <Text key={goal}>{goal}</Text>
+          <View key={goal} style={styles.listItems}>
+            <Text>{goal}</Text>
+          </View>
         ))}
       </View>
 
@@ -59,5 +61,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     width: '80%',
+  },
+  listItems: {
+    padding: 10,
+    marginVertical: 10,
+    backgroundColor: 'grey',
+    borderColor: 'black',
+    borderWidth: 1,
   },
 });
