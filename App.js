@@ -19,11 +19,16 @@ export default function App() {
     setCourseGoals((currentGoals) => [
       ...currentGoals,
       {
-        key: Math.random().toString(),
         id: Math.random().toString(),
         value: newGoal,
       },
     ]);
+  };
+
+  const removeGoalHandler = (goalId) => {
+    setCourseGoals((currentGoals) => {
+      return currentGoals.filter((goal) => goal.id !== goalId);
+    });
   };
 
   return (
@@ -34,10 +39,7 @@ export default function App() {
         keyExtractor={(item, index) => item.id}
         data={courseGoals}
         renderItem={(itemData) => (
-          <GoalItem
-            onDelete={() => console.log('Deleted!!!!')}
-            goal={itemData}
-          />
+          <GoalItem onDelete={removeGoalHandler} goal={itemData} />
         )}
       />
 
