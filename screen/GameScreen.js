@@ -1,6 +1,8 @@
 //import liraries
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Button } from 'react-native';
+import Card from '../components/Card';
+import NumberContainer from '../components/Number';
 
 const generateRandomBetween = (min, max, exclude) => {
   min = Math.ceil(min);
@@ -16,11 +18,16 @@ const generateRandomBetween = (min, max, exclude) => {
 // create a component
 const GameScreen = (props) => {
   const [currentGuess, setCurrentGuess] = useState(
-    genereateRAndomBetween(1, 100, props.userChoice)
+    generateRandomBetween(1, 100, props.userChoice)
   );
   return (
     <View style={styles.container}>
-      <Text>GameScreen</Text>
+      <Text>Oppenent's Guess</Text>
+      <NumberContainer>{currentGuess}</NumberContainer>
+      <Card style={styles.buttonContainer}>
+        <Button title='LOWER' onPress={() => {}} />
+        <Button title='GREATER' onPress={() => {}} />
+      </Card>
     </View>
   );
 };
@@ -29,9 +36,15 @@ const GameScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    padding: 10,
     alignItems: 'center',
-    backgroundColor: '#2c3e50',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 20,
+    width: 300,
+    maxWidth: '80%',
   },
 });
 
