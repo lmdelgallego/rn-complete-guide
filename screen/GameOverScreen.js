@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Button, Image } from 'react-native';
 import TitleText from '../components/TitleText';
 import BodyText from '../components/BodyText';
 import Colors from '../constans/Colors';
+import MainButton from '../components/MainButton';
 
 // create a component
 const GameOverScreen = (props) => {
@@ -12,11 +13,11 @@ const GameOverScreen = (props) => {
       <TitleText>The Game is Over!!!</TitleText>
       <View style={styles.imageContainer}>
         <Image
-          // source={require('../assets/success.png')}
-          source={{
-            uri:
-              'https://www.digitaldealer.com/wp-content/uploads/2014/08/winning.jpg',
-          }}
+          source={require('../assets/success.png')}
+          // source={{
+          //   uri:
+          //     'https://www.digitaldealer.com/wp-content/uploads/2014/08/winning.jpg',
+          // }}
           style={styles.image}
           resizeMode='cover'
         />
@@ -29,7 +30,7 @@ const GameOverScreen = (props) => {
           <Text style={styles.highlight}>{props.userNumber}</Text>
         </BodyText>
       </View>
-      <Button title='NEW GAME' onPress={props.onRestart} />
+      <MainButton onPress={props.onRestart}>NEW GAME</MainButton>
     </View>
   );
 };
