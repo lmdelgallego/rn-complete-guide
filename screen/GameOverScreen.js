@@ -11,7 +11,11 @@ const GameOverScreen = (props) => {
       <TitleText>The Game is Over!!!</TitleText>
       <View style={styles.imageContainer}>
         <Image
-          source={require('../assets/success.png')}
+          // source={require('../assets/success.png')}
+          source={{
+            uri:
+              'https://www.digitaldealer.com/wp-content/uploads/2014/08/winning.jpg',
+          }}
           style={styles.image}
           resizeMode='cover'
         />
