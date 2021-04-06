@@ -1,6 +1,7 @@
 //import liraries
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, Button, Alert } from 'react-native';
+import { View, Text, StyleSheet, Alert } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Card from '../components/Card';
 import MainButton from '../components/MainButton';
 import NumberContainer from '../components/Number';
@@ -65,10 +66,10 @@ const GameScreen = (props) => {
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card style={styles.buttonContainer}>
         <MainButton onPress={nextGuessHandler.bind(this, 'lower')}>
-          LOWER
+          <Ionicons name='md-remove' size={24} color='white' />
         </MainButton>
         <MainButton onPress={nextGuessHandler.bind(this, 'greater')}>
-          GREATER
+          <Ionicons name='md-add' size={24} color='white' />
         </MainButton>
       </Card>
     </View>
