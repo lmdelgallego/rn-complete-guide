@@ -1,7 +1,7 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Colors from '../constans/Colors';
+import Colors from '../constants/colors';
 
 // create a component
 const MainButton = (props) => {

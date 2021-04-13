@@ -1,30 +1,30 @@
-//import liraries
-import React, { Component } from 'react';
+import React from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  Dimensions,
+  Button,
   Image,
+  Dimensions,
   ScrollView,
 } from 'react-native';
-import TitleText from '../components/TitleText';
-import BodyText from '../components/BodyText';
-import Colors from '../constans/Colors';
-import MainButton from '../components/MainButton';
 
-// create a component
+import BodyText from '../components/BodyText';
+import TitleText from '../components/TitleText';
+import MainButton from '../components/MainButton';
+import Colors from '../constants/colors';
+
 const GameOverScreen = (props) => {
   return (
     <ScrollView>
-      <View style={styles.container}>
-        <TitleText>The Game is Over!!!</TitleText>
+      <View style={styles.screen}>
+        <TitleText>The Game is Over!</TitleText>
         <View style={styles.imageContainer}>
           <Image
             source={require('../assets/success.png')}
             // source={{
             //   uri:
-            //     'https://www.digitaldealer.com/wp-content/uploads/2014/08/winning.jpg',
+            //     'https://cdn.pixabay.com/photo/2016/05/05/23/52/mountain-summit-1375015_960_720.jpg'
             // }}
             style={styles.image}
             resizeMode='cover'
@@ -35,18 +35,18 @@ const GameOverScreen = (props) => {
             Your phone needed{' '}
             <Text style={styles.highlight}>{props.roundsNumber}</Text> rounds to
             guess the number{' '}
-            <Text style={styles.highlight}>{props.userNumber}</Text>
+            <Text style={styles.highlight}>{props.userNumber}</Text>.
           </BodyText>
         </View>
+
         <MainButton onPress={props.onRestart}>NEW GAME</MainButton>
       </View>
     </ScrollView>
   );
 };
 
-// define your styles
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   resultContainer: {
-    marginHorizontal: 90,
+    marginHorizontal: 30,
     marginVertical: Dimensions.get('window').height / 60,
   },
   resultText: {
@@ -79,5 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-//make this component available to the app
 export default GameOverScreen;
