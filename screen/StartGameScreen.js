@@ -104,7 +104,12 @@ const StartGameScreen = (props) => {
                 onChangeText={numberInputHandler}
                 value={enteredValue}
               />
-              <View style={styles.buttonContainer}>
+              <View
+                style={[
+                  ...styles.buttonContainer,
+                  { marginTop: availableHeight > 600 ? 20 : 5 },
+                ]}
+              >
                 <View style={{ width: buttonWidth }}>
                   <Button
                     title='Reset'
