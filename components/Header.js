@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   headerIOS: {
     backgroundColor: 'white',
     borderBottomColor: '#ccc',
-    borderWidth: 1,
+    borderBottomWidth: 1,
   },
   headerAndroid: {
     backgroundColor: Colors.primary,
