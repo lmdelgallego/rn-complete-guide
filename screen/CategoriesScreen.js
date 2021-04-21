@@ -8,6 +8,7 @@ const CategoriesScreen = (props) => {
       <Button
         title='Go to Meals !!!'
         onPress={() => {
+          // props.navigation.replace('CategoryMeals');
           props.navigation.navigate('CategoryMeals');
         }}
       />
