@@ -6,7 +6,7 @@ import { CATEGORIES } from '../data/dummy-data';
 
 const CategoryMealsScreen = (props) => {
   const catId = props.navigation.getParam('categoryId');
-  const availableMeals = useSelector((state) => state.meals.filteredMeals);
+  const availableMeals = useSelector((state) => state.meals.meals);
   const displayedMeals = availableMeals.filter(
     (meal) => meal.categoryIds.indexOf(catId) >= 0
   );
