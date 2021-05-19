@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useCallback, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Image, ScrollView, StyleSheet, View } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import CustomHeaderButton from '../components/HeaderButton';
 import DefaultText from '../components/DefaultText';
-import { MEALS } from '../data/dummy-data';
+import { toggleFavorite } from '../store/actions/meals';
 
 const ListItem = (props) => {
   return (
@@ -20,9 +20,15 @@ const MealDetailScreen = (props) => {
   const availableMeals = useSelector((state) => state.meals.meals);
   const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
 
-  /*  useEffect(() => {
-    props.navigation.setParams({ mealTitle: selectedMeal.title });
-  }, []); */
+  const dispatch = useDispatch();
+  const toggleFavoriteHandler = useCallback(() => {
+    dispatch(toggleFavorite(mealId));
+  }, [dispatch, mealId]);
+
+  useEffect(() => {
+    // props.navigation.setParams({ mealTitle: selectedMeal.title });
+    props.navigation.setParams({ toggleFav: toggleFavoriteHandler });
+  }, [toggleFavoriteHandler]);
 
   return (
     <ScrollView>
@@ -46,18 +52,13 @@ const MealDetailScreen = (props) => {
 
 MealDetailScreen.navigationOptions = (navigationData) => {
   const mealTitle = navigationData.navigation.getParam('mealTitle');
+  const toggleFavorite = navigationData.navigation.getParam('toggleFav');
 
   return {
     headerTitle: mealTitle,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-        <Item
-          title='Favorite'
-          iconName='ios-star'
-          onPress={() => {
-            alert('FAVORITE');
-          }}
-        />
+        <Item title='Favorite' iconName='ios-star' onPress={toggleFavorite} />
       </HeaderButtons>
     ),
   };
