@@ -61,7 +61,7 @@ const CartScreen = (props) => {
 
 CartScreen.navigationOptions = (navData) => {
   return {
-    headerTitle: 'Cart',
+    headerTitle: 'Your Cart',
   };
 };
 
