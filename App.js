@@ -10,6 +10,8 @@ import cartReducer from './store/reducers/cart';
 import ordersReducer from './store/reducers/orders';
 import ShopNavigator from './navigation/ShopNavigator';
 
+import { Ionicons } from '@expo/vector-icons';
+
 const rootReducer = combineReducers({
   products: productsReducer,
   cart: cartReducer,

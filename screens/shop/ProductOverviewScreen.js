@@ -51,7 +51,7 @@ ProductOverviewScreen.navigationOptions = (navData) => {
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title='Menu'
-          iconName={Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
+          iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
           onPress={() => {
             navData.navigation.toggleDrawer();
           }}
