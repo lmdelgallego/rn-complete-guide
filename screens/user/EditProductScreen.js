@@ -8,15 +8,18 @@ import {
   Platform,
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import HeaderButton from '../../components/UI/HeaderButton';
+import * as productActions from '../../store/actions/products';
 
 const EditProductScreen = (props) => {
   const prodId = props.navigation.getParam('productId');
   const editedProduct = useSelector((state) =>
     state.products.userProducts.find((prod) => prod.id === prodId)
   );
+
+  const dispatch = useDispatch();
 
   const [title, setTitle] = useState(editedProduct ? editedProduct.title : '');
   const [imageUrl, setImageUrl] = useState(
@@ -28,8 +31,16 @@ const EditProductScreen = (props) => {
   );
 
   const submitHandler = useCallback(() => {
-    console.log('submitting');
-  }, []);
+    if (editedProduct) {
+      dispatch(
+        productActions.updateProduct(prodId, title, description, imageUrl)
+      );
+    } else {
+      dispatch(
+        productActions.createProduct(title, description, imageUrl, +price)
+      );
+    }
+  }, [dispatch, prodId, title, description, imageUrl, price]);
 
   useEffect(() => {
     props.navigation.setParams({ submit: submitHandler });
@@ -43,6 +54,7 @@ const EditProductScreen = (props) => {
           <TextInput
             style={styles.input}
             value={title}
+            onChangeText={(text) => setTitle(text)}
             onChange={(text) => setTitle(text)}
           />
         </View>
@@ -51,6 +63,7 @@ const EditProductScreen = (props) => {
           <TextInput
             style={styles.input}
             value={imageUrl}
+            onChangeText={(text) => setImageUrl(text)}
             onChange={(text) => setImageUrl(text)}
           />
         </View>
@@ -60,6 +73,7 @@ const EditProductScreen = (props) => {
             <TextInput
               style={styles.input}
               value={price}
+              onChangeText={(text) => setPrice(text)}
               onChange={(text) => setPrice(text)}
             />
           </View>
@@ -69,6 +83,7 @@ const EditProductScreen = (props) => {
           <TextInput
             style={styles.input}
             value={description}
+            onChangeText={(text) => setDescription(text)}
             onChange={(text) => setDescription(text)}
           />
         </View>
