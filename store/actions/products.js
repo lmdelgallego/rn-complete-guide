@@ -7,34 +7,42 @@ export const SET_PRODUCTS = 'SET_PRODUCTS';
 
 export const fetchProducts = () => {
   return async (dispatch) => {
-    const response = await fetch(
-      'https://goalcoach-a4187.firebaseio.com/products.json'
-    );
-    const responseData = await response.json();
-    console.log('fetchProducts', responseData);
-
-    const loadedProducts = [];
-
-    for (const key in responseData) {
-      // if (Object.hasOwnProperty.call(responseData, key)) {
-      //   const element = responseData[key];
-      // }
-      loadedProducts.push(
-        new Product(
-          key,
-          'u1',
-          responseData[key].title,
-          responseData[key].imageUrl,
-          responseData[key].description,
-          +responseData[key].price
-        )
+    try {
+      const response = await fetch(
+        'https://goalcoach-a4187.firebaseio.com/products.json'
       );
-    }
 
-    dispatch({
-      type: SET_PRODUCTS,
-      products: loadedProducts,
-    });
+      if (!response.ok) {
+        throw new Error('Something is wrong!!!');
+      }
+      const responseData = await response.json();
+      const loadedProducts = [];
+
+      for (const key in responseData) {
+        // if (Object.hasOwnProperty.call(responseData, key)) {
+        //   const element = responseData[key];
+        // }
+        loadedProducts.push(
+          new Product(
+            key,
+            'u1',
+            responseData[key].title,
+            responseData[key].imageUrl,
+            responseData[key].description,
+            +responseData[key].price
+          )
+        );
+      }
+
+      dispatch({
+        type: SET_PRODUCTS,
+        products: loadedProducts,
+      });
+    } catch (error) {
+      console.log(error);
+
+      throw error;
+    }
   };
 };
 
