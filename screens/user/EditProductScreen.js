@@ -184,7 +184,9 @@ EditProductScreen.navigationOptions = (navData) => {
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title='Save'
-          iconName={Platform.OS === 'android' ? 'md-check' : 'ios-checkmark'}
+          iconName={
+            Platform.OS === 'android' ? 'md-checkmark' : 'ios-checkmark'
+          }
           onPress={submitFn}
         />
       </HeaderButtons>
