@@ -23,8 +23,6 @@ const ProductOverviewScreen = (props) => {
   const dispatch = useDispatch();
 
   const loadProducts = useCallback(async () => {
-    console.log('LOAD PRODUCTS');
-
     setIsLoading(true);
     setError(null);
     try {
