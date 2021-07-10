@@ -39,8 +39,6 @@ export const fetchProducts = () => {
         products: loadedProducts,
       });
     } catch (error) {
-      console.log(error);
-
       throw error;
     }
   };
@@ -55,11 +53,10 @@ export const deleteProduct = (productId) => {
       }
     );
     dispatch({ type: DELETE_PRODUCT, pid: productId });
+    if (!response.ok) {
+      throw new Error('Something went wrong!');
+    }
   };
-
-  if (!response.ok) {
-    throw new Error('Something went wrong!');
-  }
 };
 
 export const createProduct = (title, description, imageUrl, price) => {
