@@ -6,7 +6,8 @@ export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export const SET_PRODUCTS = 'SET_PRODUCTS';
 
 export const fetchProducts = () => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const userId = getState().auth.userId;
     try {
       const response = await fetch(
         'https://goalcoach-a4187.firebaseio.com/products.json'
@@ -25,7 +26,7 @@ export const fetchProducts = () => {
         loadedProducts.push(
           new Product(
             key,
-            'u1',
+            responseData[key].ownerId,
             responseData[key].title,
             responseData[key].imageUrl,
             responseData[key].description,
@@ -34,9 +35,12 @@ export const fetchProducts = () => {
         );
       }
 
+      console.log(loadedProducts, userId);
+
       dispatch({
         type: SET_PRODUCTS,
         products: loadedProducts,
+        userProducts: loadedProducts.filter((prod) => prod.ownerId === userId),
       });
     } catch (error) {
       throw error;
@@ -63,6 +67,7 @@ export const deleteProduct = (productId) => {
 export const createProduct = (title, description, imageUrl, price) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
+    const userId = getState().auth.userId;
     const response = await fetch(
       `https://goalcoach-a4187.firebaseio.com/products.json?auth=${token}`,
       {
@@ -75,6 +80,7 @@ export const createProduct = (title, description, imageUrl, price) => {
           description,
           imageUrl,
           price,
+          ownerId: userId,
         }),
       }
     );
@@ -88,6 +94,7 @@ export const createProduct = (title, description, imageUrl, price) => {
         description: description,
         imageUrl: imageUrl,
         price: price,
+        ownerId: userId,
       },
     });
   };
