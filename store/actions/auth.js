@@ -3,6 +3,7 @@ const API_KEY = 'AIzaSyArFtSOsqmL0k31tCgy47dPKtffXTasr1o';
 
 /* export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN'; */
+export const LOGOUT = 'LOGOUT';
 export const AUTHENTICATE = 'AUTHENTICATE';
 
 export const authenticate = (userId, token) => {
@@ -66,10 +67,18 @@ export const login = (email, password) => {
     }
     const resData = await response.json();
     dispatch(authenticate(resData.localId, resData.idToken));
+    const expirationDate = new Date(
+      new Date().getTime() + parseInt(resData.expiresIn) * 1000
+    );
+    saveDataToStore(resData.idToken, resData.localId, expirationDate);
   };
 };
 
-const saveDataToStore = (token, userId, expirationDate) => {
+export const logout = () => {
+  return { type: LOGOUT };
+};
+
+const saveDataToStore = async (token, userId, expirationDate) => {
   AsyncStorage.setItem(
     'userData',
     JSON.stringify({
@@ -78,4 +87,6 @@ const saveDataToStore = (token, userId, expirationDate) => {
       expiryDate: expirationDate.toISOString(),
     })
   );
+  const udata = await AsyncStorage.getItem('userData');
+  console.log(udata);
 };
