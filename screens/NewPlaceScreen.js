@@ -1,15 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 const NewPlaceScreen = () => {
   return (
     <View>
-      <Text>NewPlaceScreen</Text>
+      <Text>Title</Text>
     </View>
   );
 };
 
-PlacesListScreen.navigationOptions = (navData) => {
+NewPlaceScreen.navigationOptions = (navData) => {
   return {
     headerTitle: 'Add Places',
   };

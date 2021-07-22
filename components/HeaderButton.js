@@ -1,10 +1,11 @@
 import React from 'react';
 import { HeaderButton } from 'react-navigation-header-buttons';
 import { Ionicons } from '@expo/vector-icons';
-import Colors from '../constants/Color';
 import { Platform } from 'react-native';
 
-const CustomHeaderBottom = (props) => {
+import Colors from '../constants/Color';
+
+const CustomHeaderButton = (props) => {
   return (
     <HeaderButton
       {...props}
@@ -15,4 +16,4 @@ const CustomHeaderBottom = (props) => {
   );
 };
 
-export default CustomHeaderBottom;
+export default CustomHeaderButton;
