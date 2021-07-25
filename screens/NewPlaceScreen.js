@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import Colors from '../constants/Color';
 import * as placesActions from '../store/places-actions';
 
-const NewPlaceScreen = () => {
+const NewPlaceScreen = (props) => {
   const [titleValue, setTitleValue] = useState('');
   const dispatch = useDispatch();
   const titleChangeHandler = (text) => {
@@ -26,7 +26,11 @@ const NewPlaceScreen = () => {
           onChangeText={titleChangeHandler}
           value={titleValue}
         />
-        <Button title='Save Place' color={Colors.primary} onPress={() => {}} />
+        <Button
+          title='Save Place'
+          color={Colors.primary}
+          onPress={savePlaceHandler}
+        />
       </View>
     </ScrollView>
   );
