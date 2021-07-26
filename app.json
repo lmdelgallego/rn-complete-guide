@@ -23,7 +23,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "infoPlist" : {
+        "NSPhotoLibraryUsageDescription": "Give APP permission to save photos",
+        "NSCameraUsageDescription": "Give APP permission to access your camera",
+        "NSMicrophoneUsageDescription": "Give APP permission to use your microphone"
+      }
     }
   }
 }
