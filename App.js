@@ -4,10 +4,19 @@ import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import PlacesNavigation from './navigation/PlacesNavigator';
 import placesReducer from './store/places-reducer';
+import { init } from './helpers/db';
 
 const rootReducer = combineReducers({
   places: placesReducer,
 });
+
+init()
+  .then(() => {
+    console.log('Initialized database');
+  })
+  .catch((err) => {
+    console.log('Initialized db error', err);
+  });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
