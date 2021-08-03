@@ -15,7 +15,7 @@ const PlacesListScreen = (props) => {
       keyExtractor={(item) => item.id}
       renderItem={(itemData) => (
         <PlaceItem
-          image={imageData.item.imageUrl}
+          image={itemData.item.imageUrl}
           title={itemData.item.title}
           address={null}
           onSelect={() => {
