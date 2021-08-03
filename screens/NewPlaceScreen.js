@@ -1,28 +1,37 @@
-import React from 'react';
-import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import React, { useState } from 'react';
+import {
+  ScrollView,
+  View,
+  Button,
+  Text,
+  TextInput,
+  StyleSheet,
+} from 'react-native';
 import { useDispatch } from 'react-redux';
-import ImgPicker from '../components/ImagePicker';
+
 import Colors from '../constants/Color';
 import * as placesActions from '../store/places-actions';
+import ImagePicker from '../components/ImagePicker';
 
 const NewPlaceScreen = (props) => {
   const [titleValue, setTitleValue] = useState('');
-  const [selectedImage, setSelectedImage] = useState('');
+  const [selectedImage, setSelectedImage] = useState();
+
   const dispatch = useDispatch();
+
   const titleChangeHandler = (text) => {
     // you could add validation
     setTitleValue(text);
   };
+
+  const imageTakenHandler = (imagePath) => {
+    setSelectedImage(imagePath);
+  };
+
   const savePlaceHandler = () => {
     dispatch(placesActions.addPlace(titleValue, selectedImage));
     props.navigation.goBack();
   };
-
-  const imageTakenHandler = (imagePath) => {
-    setSelectedImage(imagePath);
-  }
 
   return (
     <ScrollView>
@@ -33,7 +42,7 @@ const NewPlaceScreen = (props) => {
           onChangeText={titleChangeHandler}
           value={titleValue}
         />
-        <ImgPicker onImageTaken={imageTakenHandler} />
+        <ImagePicker onImageTaken={imageTakenHandler} />
         <Button
           title='Save Place'
           color={Colors.primary}
@@ -44,17 +53,13 @@ const NewPlaceScreen = (props) => {
   );
 };
 
-NewPlaceScreen.navigationOptions = (navData) => {
-  return {
-    headerTitle: 'Add Places',
-  };
+NewPlaceScreen.navigationOptions = {
+  headerTitle: 'Add Place',
 };
-
-export default NewPlaceScreen;
 
 const styles = StyleSheet.create({
   form: {
-    margin: 20,
+    margin: 30,
   },
   label: {
     fontSize: 18,
@@ -68,3 +73,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
   },
 });
+
+export default NewPlaceScreen;

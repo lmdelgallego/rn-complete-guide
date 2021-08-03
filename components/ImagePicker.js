@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, Button, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Color from '../constants/Color';
 
-const ImgPicker = () => {
+const ImgPicker = (props) => {
   const [image, setImage] = useState();
 
   const verifyPermission = async () => {
@@ -32,7 +32,7 @@ const ImgPicker = () => {
 
     console.log(result);
     setImage(result.uri);
-    props.onImageTaken(image.uri);
+    props.onImageTaken(result.uri);
   };
 
   return (

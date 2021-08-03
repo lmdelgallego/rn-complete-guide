@@ -4,7 +4,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector } from 'react-redux';
 
 import HeaderButton from '../components/HeaderButton';
-import PlaceItem from '../components/PlacesItem';
+import PlaceItem from '../components/PlaceItem';
 
 const PlacesListScreen = (props) => {
   const places = useSelector((state) => state.places.places);

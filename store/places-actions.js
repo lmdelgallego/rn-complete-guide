@@ -9,7 +9,7 @@ export const addPlace = (title, image) => {
 
     try {
       FileSystem.moveAsync({
-        from: fileName,
+        from: image,
         to: newPath,
       });
     } catch (err) {
