@@ -37,3 +37,21 @@ export const insertPlace = (title, imageUrl, address, lat, lon) => {
   });
   return promise;
 }
+
+export const fetchPlace = () => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+          'Select * from places;',
+          [],
+          (_, result) => {
+            resolve(result);
+          },
+          (_, err) => {
+            reject(err);
+          }
+      );
+    });
+  });
+  return promise;
+}
