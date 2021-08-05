@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import * as Location from 'expo-location';
 import Color from '../constants/Color';
+import MapPreview from './MapPreview';
 
 const LocationPicker = (props) => {
   const [pickedLocation, setPickedLocation] = useState(false);
@@ -38,7 +39,7 @@ const LocationPicker = (props) => {
       });
       setPickedLocation({
         lat: location.coords.latitude,
-        log: location.coords.longitude,
+        lng: location.coords.longitude,
       });
     } catch (err) {
       Alert.alert(
@@ -51,13 +52,13 @@ const LocationPicker = (props) => {
   };
   return (
     <View style={styles.locationPicker}>
-      <View style={styles.mapPreview}>
+      <MapPreview style={styles.mapPreview} location={pickedLocation}>
         {isFetching ? (
           <ActivityIndicator size='large' color={Color.primary} />
         ) : (
           <Text>No location chosen yet!</Text>
         )}
-      </View>
+      </MapPreview>
       <Button
         title='Get User Location'
         onPress={getLocationHandler}
@@ -79,7 +80,5 @@ const styles = StyleSheet.create({
     height: 150,
     borderWidth: 1,
     borderColor: '#CCC',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
