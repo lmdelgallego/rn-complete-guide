@@ -9,7 +9,7 @@ const MapPreview = (props) => {
       props.location.lng
     },${props.location.lat})/${props.location.lng},${
       props.location.lat
-    },14,0/800x600@2x?before_layer=admin-0-boundary-bg&access_token=${
+    },16,0/800x600@2x?before_layer=admin-0-boundary-bg&access_token=${
       ENV().mapBoxApiKey
     }`;
   }
