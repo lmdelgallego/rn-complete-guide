@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -14,6 +14,14 @@ import MapPreview from './MapPreview';
 const LocationPicker = (props) => {
   const [pickedLocation, setPickedLocation] = useState(false);
   const [isFetching, setIsFetching] = useState();
+
+  const mapPickedLocation = props.navigation.getParam('pickedLocation');
+
+  useEffect(() => {
+    if (mapPickedLocation) {
+      setPickedLocation(mapPickedLocation);
+    }
+  }, [mapPickedLocation]);
 
   const verifyPermission = async () => {
     const { status } = await Location.requestPermissionsAsync();
