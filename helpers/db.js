@@ -6,7 +6,7 @@ export const init = () => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS places (id INTEGER PRIMARY KEY NOT NULL, title TEXT NOT NULL, imageUrl TEXT NOT NULL, address TEXT NOT NULL, lat REAL NOT NULL, lon REAL NOT NULL);',
+        'CREATE TABLE IF NOT EXISTS places (id INTEGER PRIMARY KEY NOT NULL, title TEXT NOT NULL, imageUrl TEXT NOT NULL, address TEXT NOT NULL, lat REAL NOT NULL, lng REAL NOT NULL);',
         [],
         () => {
           resolve();
@@ -20,38 +20,38 @@ export const init = () => {
   return promise;
 };
 
-export const insertPlace = (title, imageUrl, address, lat, lon) => {
+export const insertPlace = (title, imageUrl, address, lat, lng) => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-          'INSERT INTO places (title, imageUrl, address, lat, lon) VALUES (?,?,?,?,?);',
-          [title, imageUrl, address, lat, lon],
-          (_, result) => {
-            resolve(result);
-          },
-          (_, err) => {
-            reject(err);
-          }
+        'INSERT INTO places (title, imageUrl, address, lat, lng) VALUES (?,?,?,?,?);',
+        [title, imageUrl, address, lat, lng],
+        (_, result) => {
+          resolve(result);
+        },
+        (_, err) => {
+          reject(err);
+        }
       );
     });
   });
   return promise;
-}
+};
 
 export const fetchPlace = () => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-          'Select * from places;',
-          [],
-          (_, result) => {
-            resolve(result);
-          },
-          (_, err) => {
-            reject(err);
-          }
+        'Select * from places;',
+        [],
+        (_, result) => {
+          resolve(result);
+        },
+        (_, err) => {
+          reject(err);
+        }
       );
     });
   });
   return promise;
-}
+};
