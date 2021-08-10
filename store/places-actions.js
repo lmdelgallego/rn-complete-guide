@@ -1,13 +1,31 @@
 import * as FileSystem from 'expo-file-system';
 import { fetchPlace, insertPlace } from '../helpers/db';
+import ENV from '../env';
 
 export const ADD_PLACE = 'ADD_PLACE';
 export const SET_PLACE = 'SET_PLACE';
 
-export const addPlace = (title, image) => {
+export const addPlace = (title, image, location) => {
   return async (dispatch) => {
+    const response = await fetch(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${location.lng},${
+        location.lat
+      }.json?access_token=${ENV().mapBoxApiKey}`
+    );
+
+    if (!response.ok) {
+      throw new Error('Something went wrong with geocoding');
+    }
+    const resData = await response.json();
+    // if (!resData.result) { para google
+    if (!resData.features) {
+      throw new Error('Something went wrong with geocoding');
+    }
+    const address = resData.features[0].place_name;
     const fileName = image.split('/').pop();
     const newPath = FileSystem.documentDirectory + fileName;
+
+    console.log(address);
 
     try {
       FileSystem.moveAsync({
@@ -17,9 +35,9 @@ export const addPlace = (title, image) => {
       const dbResult = await insertPlace(
         title,
         newPath,
-        'Dummy Address',
-        15.6,
-        12.3
+        address,
+        location.lat,
+        location.lng
       );
       console.log('dbResult:', dbResult);
       dispatch({
@@ -28,6 +46,8 @@ export const addPlace = (title, image) => {
           id: dbResult.insertId,
           title: title,
           image: newPath,
+          address: address,
+          coords: { lat: location.lat, lng: location.lng },
         },
       });
     } catch (err) {
