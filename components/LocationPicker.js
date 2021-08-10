@@ -17,9 +17,12 @@ const LocationPicker = (props) => {
 
   const mapPickedLocation = props.navigation.getParam('pickedLocation');
 
+  const { onLocationPicked } = props;
+
   useEffect(() => {
     if (mapPickedLocation) {
       setPickedLocation(mapPickedLocation);
+      props.onLocationPicked(mapPickedLocation);
     }
   }, [mapPickedLocation]);
 
@@ -46,6 +49,10 @@ const LocationPicker = (props) => {
         timeInterval: 5000,
       });
       setPickedLocation({
+        lat: location.coords.latitude,
+        lng: location.coords.longitude,
+      });
+      props.onLocationPicked({
         lat: location.coords.latitude,
         lng: location.coords.longitude,
       });
