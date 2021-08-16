@@ -23,6 +23,8 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.luisdelgallego.great-place-course",
+      "buildNumber": "1.0.0",
       "supportsTablet": false,
       "infoPlist" : {
         "NSPhotoLibraryUsageDescription": "Give APP permission to save photos",
@@ -31,10 +33,19 @@
       }
     },
     "android": {
+      "package": "com.luisdelgallego.great_place_course",
+      "versionCode": 1,
       "adaptiveIcon" : {
         "foregroundImage": "./assets/places-adaptive.png",
         "backgroundColor": "#171717"
-      }
+      },
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     }
   }
 }
