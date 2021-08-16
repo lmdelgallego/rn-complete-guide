@@ -24,11 +24,15 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "infoPlist" : {
+      "infoPlist": {
         "NSPhotoLibraryUsageDescription": "Give APP permission to save photos",
         "NSCameraUsageDescription": "Give APP permission to access your camera",
         "NSMicrophoneUsageDescription": "Give APP permission to use your microphone"
-      }
+      },
+      "bundleIdentifier": "com.luisdelgallego.rncompleteguide"
+    },
+    "android": {
+      "package": "com.luisdelgallego.rncompleteguide"
     }
   }
 }
