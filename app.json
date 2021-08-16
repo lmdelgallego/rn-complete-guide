@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "Great Places",
+    "description": "Some description, this text don't show on appStores",
     "slug": "great-places",
     "privacy": "public",
     "platforms": [
@@ -9,11 +10,11 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/places.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash_icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#171717"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -27,6 +28,12 @@
         "NSPhotoLibraryUsageDescription": "Give APP permission to save photos",
         "NSCameraUsageDescription": "Give APP permission to access your camera",
         "NSMicrophoneUsageDescription": "Give APP permission to use your microphone"
+      }
+    },
+    "android": {
+      "adaptiveIcon" : {
+        "foregroundImage": "./assets/places-adaptive.png",
+        "backgroundColor": "#171717"
       }
     }
   }
