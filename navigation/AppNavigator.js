@@ -2,12 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ProductOverviewScreen from '../screens/shop/ProductOverviewScreen';
 
 // import ShopNavigator from './ShopNavigator';
-// const MyStack = createStackNavigator();
-const MyStack = createNativeStackNavigator();
+const MyStack = createStackNavigator();
 
 const AppNavigator = (props) => {
   const isAuth = useSelector((state) => !!state.auth.token);
