@@ -26,7 +26,9 @@ import UserProductsScreen, {
 import EditProductScreen, {
   screenOptions as editProductScreenOptions,
 } from '../screens/user/EditProductScreen';
-import AuthScreen from '../screens/user/AuthScreen';
+import AuthScreen, {
+  screenOptions as authScreenOptions,
+} from '../screens/user/AuthScreen';
 import StartupScreen from '../screens/StartupScreen';
 import { useDispatch } from 'react-redux';
 import * as authActions from '../store/actions/auth';
@@ -46,7 +48,7 @@ const defaultNavigationOptions = {
 
 const ProductStackNavigator = createStackNavigator();
 
-export const ProductsNavigator = () => {
+const ProductsNavigator = () => {
   return (
     <ProductStackNavigator.Navigator screenOptions={defaultNavigationOptions}>
       <ProductStackNavigator.Screen
@@ -91,7 +93,7 @@ export const ProductsNavigator = () => {
 
 const OrdersStackNavigator = createStackNavigator();
 
-export const OrdersNavigator = () => {
+const OrdersNavigator = () => {
   return (
     <OrdersStackNavigator.Navigator screenOptions={defaultNavigationOptions}>
       <OrdersNavigator.Screen
@@ -125,7 +127,7 @@ const OrdersNavigator = createStackNavigator(
 
 const AdminStackNavigator = createStackNavigator();
 
-export const AdminNavigator = () => {
+const AdminNavigator = () => {
   return (
     <AdminStackNavigator.Navigator screenOptions={defaultNavigationOptions}>
       <AdminStackNavigator.Screen
@@ -165,7 +167,7 @@ const AdminNavigator = createStackNavigator(
 
 const ShopDrawerNavigator = createDrawerNavigator();
 
-const ShopNavigator = () => {
+export const ShopNavigator = () => {
   const dispatch = useDispatch();
   return (
     <ShopDrawerNavigator.Navigator
@@ -262,6 +264,23 @@ const ShopNavigator = createDrawerNavigator(
     },
   }
 );
+*/
+
+const AuthStackNavigator = createStackNavigator();
+
+export const AuthNavigator = () => {
+  return (
+    <AuthStackNavigator.Navigator screenOptions={defaultNavigationOptions}>
+      <AuthStackNavigator.Screen
+        name='Auth'
+        component={AuthScreen}
+        options={authScreenOptions}
+      />
+    </AuthStackNavigator.Navigator>
+  );
+};
+
+/*
 
 const AuthNavigator = createStackNavigator(
   {
@@ -271,7 +290,9 @@ const AuthNavigator = createStackNavigator(
     defaultNavigationOptions: defaultNavigationOptions,
   }
 );
+*/
 
+/*
 const MainNavigator = createSwitchNavigator({
   StartUp: StartupScreen,
   Auth: AuthNavigator,

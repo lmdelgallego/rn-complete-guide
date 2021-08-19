@@ -5,8 +5,13 @@ const API_KEY = 'AIzaSyArFtSOsqmL0k31tCgy47dPKtffXTasr1o';
 export const LOGIN = 'LOGIN'; */
 export const LOGOUT = 'LOGOUT';
 export const AUTHENTICATE = 'AUTHENTICATE';
+export const SET_DID_TRY_AL = 'SET_DID_TRY_AL';
 
 let timer;
+
+export const setDidTryAL = () => {
+  return { type: SET_DID_TRY_AL };
+};
 
 export const authenticate = (userId, token, expiryTime) => {
   return (dispatch) => {
