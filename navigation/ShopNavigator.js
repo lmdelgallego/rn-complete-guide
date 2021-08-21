@@ -109,6 +109,7 @@ export const ShopNavigator = () => {
   const dispatch = useDispatch();
   return (
     <ShopDrawerNavigator.Navigator
+      screenOptions={{ headerShown: false }}
       drawerContent={(props) => {
         return (
           <View style={{ flex: 1, paddingTop: 20 }}>
@@ -125,8 +126,8 @@ export const ShopNavigator = () => {
           </View>
         );
       }}
-      screenOptions={{
-        activeTintColor: Colors.ProductDetail,
+      drawerContentOptions={{
+        activeTintColor: Colors.primary,
       }}
     >
       <ShopDrawerNavigator.Screen
