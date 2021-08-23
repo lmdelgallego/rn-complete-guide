@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Button, View, StyleSheet } from 'react-native';
 import * as Notification from 'expo-notifications';
+import * as Permission from 'expo-permissions';
 
 export default function App() {
+  useEffect(() => {
+    Permission.getAsync(Permission.NOTIFICATIONS)
+      .then((statusObj) => {
+        if (statusObj.status !== 'granted') {
+          return Permission.askAsync(Permission.NOTIFICATIONS);
+        }
+        return statusObj;
+      })
+      .then((statusObj) => {
+        if (statusObj.status !== 'granted') {
+          return;
+        }
+      });
+  }, []);
+
   const triggerNotificationsHandler = () => {
     Notification.scheduleNotificationAsync({
       content: {
