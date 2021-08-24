@@ -29,13 +29,20 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const subs = Notification.addNotificationReceivedListener(
+    const backgroundSubscription =
+      Notification.addNotificationResponseReceivedListener((response) => {
+        console.log(response);
+      });
+
+    const foregroundSubscription = Notification.addNotificationReceivedListener(
       (notification) => {
         console.log(notification);
       }
     );
+
     return () => {
-      subs.remove();
+      foregroundSubscription.remove();
+      backgroundSubscription.remove();
     };
   }, []);
 
