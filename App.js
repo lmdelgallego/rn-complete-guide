@@ -4,6 +4,14 @@ import { Button, View, StyleSheet } from 'react-native';
 import * as Notification from 'expo-notifications';
 import * as Permission from 'expo-permissions';
 
+Notification.setNotificationHandler({
+  handleNotification: async () => {
+    return {
+      shouldShowAlert: true,
+    };
+  },
+});
+
 export default function App() {
   useEffect(() => {
     Permission.getAsync(Permission.NOTIFICATIONS)
