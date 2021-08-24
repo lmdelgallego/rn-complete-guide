@@ -28,11 +28,25 @@ export default function App() {
       });
   }, []);
 
+  useEffect(() => {
+    const subs = Notification.addNotificationReceivedListener(
+      (notification) => {
+        console.log(notification);
+      }
+    );
+    return () => {
+      subs.remove();
+    };
+  }, []);
+
   const triggerNotificationsHandler = () => {
     Notification.scheduleNotificationAsync({
       content: {
         title: 'Fist local notification',
         body: 'This is a local notification we are sending',
+        data: {
+          id: '1129569188',
+        },
       },
       trigger: {
         seconds: 10,
