@@ -23,8 +23,12 @@ export default function App() {
       })
       .then((statusObj) => {
         if (statusObj.status !== 'granted') {
-          return;
+          throw new Error('Permission not granted');
         }
+      })
+      .then(() => {})
+      .catch((error) => {
+        return null;
       });
   }, []);
 
@@ -47,19 +51,19 @@ export default function App() {
   }, []);
 
   const triggerNotificationsHandler = () => {
-    Notification.scheduleNotificationAsync({
-      content: {
-        title: 'Fist local notification',
-        body: 'This is a local notification we are sending',
-        data: {
-          id: '1129569188',
-        },
-      },
-      trigger: {
-        seconds: 10,
-      },
-      identifier: '',
-    });
+    // Notification.scheduleNotificationAsync({
+    //   content: {
+    //     title: 'Fist local notification',
+    //     body: 'This is a local notification we are sending',
+    //     data: {
+    //       id: '1129569188',
+    //     },
+    //   },
+    //   trigger: {
+    //     seconds: 10,
+    //   },
+    //   identifier: '',
+    // });
   };
 
   return (
