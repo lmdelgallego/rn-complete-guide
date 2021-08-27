@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Button, View, StyleSheet } from 'react-native';
 import * as Notification from 'expo-notifications';
@@ -13,6 +13,8 @@ Notification.setNotificationHandler({
 });
 
 export default function App() {
+  const [pushToken, setPushToken] = useState('');
+
   useEffect(() => {
     Permission.getAsync(Permission.NOTIFICATIONS)
       .then((statusObj) => {
@@ -31,6 +33,7 @@ export default function App() {
       })
       .then((response) => {
         const token = response.data;
+        setPushToken(token);
       })
       .catch((error) => {
         return null;
@@ -69,6 +72,20 @@ export default function App() {
     //   },
     //   identifier: '',
     // });
+    fetch('https://exp.host/--/api/v2/push/send', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Accept-Encoding': 'gzip, deflea',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        to: pushToken,
+        data: { extraData: 'Some Data' },
+        title: 'Send via app',
+        body: 'This push notification was send via the app',
+      }),
+    });
   };
 
   return (
