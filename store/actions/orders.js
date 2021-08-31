@@ -66,7 +66,9 @@ export const addOrder = (cartItems, totalAmount) => {
     });
 
     for (const item of cartItems) {
-      const pushToken = item.pushToken;
+      const pushToken = item.productPushToken;
+
+      console.log(item);
 
       fetch('https://exp.host/--/api/v2/push/send', {
         method: 'POST',
